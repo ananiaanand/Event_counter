@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = 'http://localhost:8000/api/';
+const baseURL = 'https://event-counter-6z3i.onrender.com/api/';
 
 const axiosInstance = axios.create({
     baseURL: baseURL,
