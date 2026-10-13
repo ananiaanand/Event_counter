@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = 'https://event-counter-6z3i.onrender.com/api/';
+const baseURL = process.env.REACT_APP_API_BASE_URL || (process.env.NODE_ENV === 'production' ? 'https://event-counter-6z3i.onrender.com/api/' : 'http://127.0.0.1:8000/api/');
 
 const axiosInstance = axios.create({
     baseURL: baseURL,
