@@ -81,9 +81,19 @@ export const AuthProvider = ({ children }) => {
 
             return { success: true, room: res.data.room };
         } catch (error) {
+            let msg = error.response?.data?.error || error.response?.data?.detail;
+            if (!msg) {
+                if (error.response?.status === 404) {
+                    msg = 'Backend service returned 404. The Render backend must be redeployed with the latest commit.';
+                } else if (!error.response) {
+                    msg = 'Could not connect to the backend server. Please check your connection or server status.';
+                } else {
+                    msg = 'Failed to create room. Please verify your details.';
+                }
+            }
             return {
                 success: false,
-                error: error.response?.data?.error || 'Failed to create room. Please verify your details.'
+                error: msg
             };
         }
     };
@@ -101,9 +111,19 @@ export const AuthProvider = ({ children }) => {
 
             return { success: true, room: res.data.room };
         } catch (error) {
+            let msg = error.response?.data?.error || error.response?.data?.detail;
+            if (!msg) {
+                if (error.response?.status === 404) {
+                    msg = 'Backend service returned 404. The Render backend must be redeployed with the latest commit.';
+                } else if (!error.response) {
+                    msg = 'Could not connect to the backend server. Please check your connection or server status.';
+                } else {
+                    msg = 'Failed to join partner room.';
+                }
+            }
             return {
                 success: false,
-                error: error.response?.data?.error || 'Failed to join partner room.'
+                error: msg
             };
         }
     };
@@ -121,9 +141,19 @@ export const AuthProvider = ({ children }) => {
 
             return { success: true, room: res.data.room };
         } catch (error) {
+            let msg = error.response?.data?.error || error.response?.data?.detail;
+            if (!msg) {
+                if (error.response?.status === 404) {
+                    msg = 'Backend service returned 404. The Render backend must be redeployed with the latest commit.';
+                } else if (!error.response) {
+                    msg = 'Could not connect to the backend server. Please check your connection or server status.';
+                } else {
+                    msg = 'Failed to sign in. Please verify your room code and date of togetherness.';
+                }
+            }
             return {
                 success: false,
-                error: error.response?.data?.error || 'Failed to sign in. Please verify your room code and date of togetherness.'
+                error: msg
             };
         }
     };
